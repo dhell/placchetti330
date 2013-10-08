@@ -12,7 +12,7 @@ import java.io.*;
 public class CodeChecker {
     /** checks to see if the player's guess was right
  	* @param codeSplit The character array containing the current code inputed by one of the players
- 	* @param guessSplit The character array containing the current guess inputed by on eof the players
+ 	* @param guessSplit The character array for an update containing the current guess inputed by on eof the players
  	*/
         private static int partialCount, exactCount;
           
