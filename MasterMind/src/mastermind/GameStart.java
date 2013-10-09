@@ -44,8 +44,12 @@ public class GameStart {
                 System.out.println("following characters:"+lambda+"");
 		// get the code from one of the players	
 		codeSplit = readCode();
-		 	
-		// lets one of the players guess the code	
-		CodeBreaker.codeBreaker(codeSplit,givenRounds,lambda);
+		if(InputChecker.alpha(gamma, codeSplit)){
+                    CodeBreaker.codeBreaker(codeSplit,givenRounds,lambda);
+                } else {
+                    System.out.println("You must chose from the pool of letters, try again.");
+                    gameStart();	
+                }	
+		// lets one of the players guess the code
 	}
 }
