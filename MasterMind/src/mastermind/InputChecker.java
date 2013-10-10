@@ -7,12 +7,19 @@ package mastermind;
 // import classes
 import java.util.*;
 import java.io.*;
+import java.lang.*;
 
 public class InputChecker {
     private static int z = 0;
+    /**
+     *
+     * @param lang
+     * @param code
+     * @return
+     */
     public static boolean alpha(char[] lang, char[] code){
-        for(int x = code.length;x<0;x--){
-            for(int y = lang.length;y<0;y--){
+        for(int x=0;x<code.length;x++){
+            for(int y=0;y<lang.length;y++){
                 if(code[x] == lang[y]){
                     z++;
                 }

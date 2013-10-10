@@ -8,6 +8,7 @@ package mastermind;
 // import classes
 import java.util.*;
 import java.io.*;
+import java.lang.*;
 
 public class GameStart {
         private static int elements, givenRounds;
@@ -15,7 +16,7 @@ public class GameStart {
         private static String alpha,lambda;
         private static char[] readCode() {
 		// this allows a player to type the code without the other seeing it
-		Console console = System.console( );
+		Console console = System.console();
     		System.out.println("Enter code:");
     		return console.readPassword();
 	}
@@ -28,11 +29,9 @@ public class GameStart {
 		//need to check if below 26 and above 0
 		System.out.println("Enter amount of elements: ");
 		elements = in.nextInt();
-                for (int i = elements; i == 0 ; i--){
-                    gamma[i]=beta[i];
-                }
-		lambda = new String (gamma);
-                
+                gamma = java.util.Arrays.copyOfRange(beta, 0, elements);
+		lambda = new String(gamma);
+                System.out.println(""+lambda);
 		//need to check if above 0
 		System.out.println("Enter number of rounds: ");
 		givenRounds = in.nextInt();

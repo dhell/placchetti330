@@ -5,8 +5,9 @@ package mastermind;
  */
 
 // import classes
-import java.util.Scanner;
+import java.util.*;
 import java.io.*;
+import java.lang.*;
 
 public class MStermind {
     private int exactCount;

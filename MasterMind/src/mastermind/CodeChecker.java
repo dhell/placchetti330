@@ -8,6 +8,7 @@ package mastermind;
 // import classes
 import java.util.*;
 import java.io.*;
+import java.lang.*;
 
 public class CodeChecker {
     /** checks to see if the player's guess was right
@@ -17,6 +18,8 @@ public class CodeChecker {
         private static int partialCount, exactCount;
           
 	public static void codeChecker(char[] codeSplit, char[] guessSplit){
+                System.out.println("code"+codeSplit[0]);
+                System.out.println("guess"+guessSplit[0]);
                 exactCount = 0;
 		partialCount = 0;
 		
