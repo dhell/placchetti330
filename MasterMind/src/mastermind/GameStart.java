@@ -31,11 +31,9 @@ public class GameStart {
 		elements = in.nextInt();
                 gamma = java.util.Arrays.copyOfRange(beta, 0, elements);
 		lambda = new String(gamma);
-                System.out.println(""+lambda);
 		//need to check if above 0
 		System.out.println("Enter number of rounds: ");
 		givenRounds = in.nextInt();
-		
 		//need to check if 4 letters that are included in number of elements
 		//can't be Z in code if number of elements is 20
                 System.out.println("Please enter the code below and ");
