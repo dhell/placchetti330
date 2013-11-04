@@ -21,7 +21,7 @@ import javax.swing.event.UndoableEditListener;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
-
+ 
 /**
  *
  * @author Sean Placchetti
@@ -29,6 +29,7 @@ import javax.swing.undo.UndoManager;
 public class GUI extends JFrame implements ActionListener {
 
     protected UndoAction undoAction;
+     
     protected RedoAction redoAction;
     protected UndoManager undoMan = new UndoManager();
     JButton save, load, cut, copy, paste, undo, redo;
