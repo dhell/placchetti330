@@ -1,4 +1,4 @@
-package gui;
+//package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +10,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.event.UndoableEditEvent;
@@ -26,13 +27,14 @@ public class GUI extends JFrame implements ActionListener {
     protected UndoAction undoAction;
     protected RedoAction redoAction;
     protected SaveAction saveAction;
+    protected SearchAction searchAction;
 /*     protected LoadAction loadAction;
     protected CutAction cutAction;
     protected CopyAction copyAction;
     protected PasteAction pasteAction;*/
     protected UndoManager undoMan = new UndoManager();
-    JButton save, load, cut, copy, paste, undo, redo;
-    JTextArea text;
+    JButton save, load, cut, copy, paste, undo, redo, search;
+    JTextArea text, searchBox;
     public GUI() {
         super("Text Editor");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -45,10 +47,16 @@ public class GUI extends JFrame implements ActionListener {
         undoAction = new UndoAction();
         redoAction = new RedoAction();
         saveAction = new SaveAction();
+        searchAction = new SearchAction();
    /*     loadAction = new LoadAction();
         cutAction = new CutAction();
         copyAction = new CopyAction();
         pasteAction = new PasteAction();*/
+        
+        search = new JButton("search");
+        search.setBounds(550, 20, 70, 40);
+        search.addActionListener(searchAction);
+        panel.add(search);
         
        save = new JButton("save");
         save.setBounds(60, 20, 70, 40);
@@ -85,6 +93,7 @@ public class GUI extends JFrame implements ActionListener {
         JMenuItem cut = new JMenuItem("Cut");
         JMenuItem copy = new JMenuItem("Copy");
         JMenuItem paste = new JMenuItem("Paste");
+        JMenuItem search = new JMenuItem("Search");
         menubar.setBounds(0, 0, 50, 20);
         menubar.add(file);
         file.add(save);
@@ -94,15 +103,35 @@ public class GUI extends JFrame implements ActionListener {
         file.add(cut);
         file.add(copy);
         file.add(paste);
+        file.add(search);
         panel.add(menubar);
         text = new JTextArea();
         text.setBounds(30, 80, 440, 300);
+        text.setLineWrap(true);
         panel.add(text);
+        searchBox = new JTextArea();
+        searchBox.setBounds(500, 80, 120, 60);
+        searchBox.setLineWrap(true);
+        panel.add(searchBox);
         add(panel);
-        setSize(600, 500);
+        setSize(670, 500);
         text.getDocument().addUndoableEditListener(new undoRedoListener());
     }
 
+    public class SearchAction implements ActionListener {
+    	 
+    	
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String searchWord = searchBox.getText().trim();
+			String document = text.getText().trim();
+			String [] documentWords = document.split(searchWord);
+			int count = (documentWords.length)-1;
+			JOptionPane.showMessageDialog(null, searchWord+" was found "+count+" times");
+		}
+
+    }
+    
     class undoRedoListener implements UndoableEditListener {
 
         public void undoableEditHappened(UndoableEditEvent e) {
