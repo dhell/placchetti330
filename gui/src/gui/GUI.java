@@ -15,6 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
@@ -119,15 +122,22 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     public class SearchAction implements ActionListener {
-    	 
+    	protected int pos = -1;
     	
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			String searchWord = searchBox.getText().trim();
-			String document = text.getText().trim();
-			String [] documentWords = document.split(searchWord);
-			int count = (documentWords.length)-1;
-			JOptionPane.showMessageDialog(null, searchWord+" was found "+count+" times");
+			try{
+				String findString = searchBox.getText().trim();
+				String tex = text.getText();
+			    pos = tex.indexOf(findString, pos+1);
+			    text.setCaretPosition(pos);
+			   	text.setSelectionStart(pos);
+			   	text.setSelectionEnd(pos + findString.length());
+			}catch(Exception e1){
+				System.out.println("You have reached the end of the file");
+			}
+		    
+		   
 		}
 
     }
@@ -261,8 +271,11 @@ public class GUI extends JFrame implements ActionListener {
     public static void main(String[] args) {
         new GUI();
     }
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent arg0) {
-    }
+    
 }
